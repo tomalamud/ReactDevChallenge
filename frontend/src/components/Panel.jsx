@@ -1,7 +1,7 @@
 import { Button, ButtonGroup } from '@mui/material';
 import React, { useEffect, useState, useRef } from 'react'
 import PanelHeader from './PanelHeader'
-import ColumnGroupingTable from './Table';
+import ColumnGroupingTable from './MainTable';
 
 function Panel() {
   const [data, setData] = useState(undefined);
@@ -45,7 +45,6 @@ function Panel() {
         <PanelHeader data={data}/>
         <div className='h-20 w-full flex justify-between bg-white px-4 items-center'>Detalle 
           <div>
-            {/* Date-Filter Component */}
             <form className='flex space-x-2 items-end'>
               <div>
               {validDate ? <label>Buscar desde</label> : (

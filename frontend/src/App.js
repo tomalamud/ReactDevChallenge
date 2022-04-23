@@ -1,16 +1,15 @@
 import React from 'react';
-import Sidebar from './components/Sidebar';
-import Panel from './components/Panel';
-import Header from './components/Header';
+import MainView from './components/MainView';
+import Login from './components/Login';
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <Header/>
-      <div className='flex'>        
-        <Sidebar className="grow"/>
-        <Panel className="grow-[2]"/>
-      </div>
+      <Routes>
+        <Route path="/" element={<MainView/>}/>
+        <Route path="login" element={<Login/>}/>
+      </Routes>
     </>
   );
 }
