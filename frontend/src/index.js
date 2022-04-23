@@ -1,13 +1,21 @@
-import "babel-polyfill";
-import "react-app-polyfill/ie11";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './dist/output.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { StyledEngineProvider } from "@mui/material";
 
-import ReactDOM from "react-dom";
-import * as serviceWorker from "./serviceWorker";
 
-
-ReactDOM.render(
-  "Welcome to Inceptia ReactJS Challenge",
-  document.getElementById("root")
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <StyledEngineProvider injectFirst>
+      <App />
+    </StyledEngineProvider>
+  </React.StrictMode>
 );
 
-serviceWorker.unregister();
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
