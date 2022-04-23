@@ -1,9 +1,12 @@
-FROM node:8.10.0
+FROM node:17.6.0
 
-WORKDIR /usr/src/app
-COPY package.json /usr/src/app
+WORKDIR /app
+COPY package.json ./
+COPY package-lock.json ./
 
-RUN npm install react-hot-loader
-RUN npm install --loglevel verbose
+RUN npm install
+
+COPY . ./
+
 
 CMD ["npm", "start"]
