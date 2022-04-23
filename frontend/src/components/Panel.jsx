@@ -4,12 +4,13 @@ import PanelHeader from './PanelHeader'
 import ColumnGroupingTable from './Table';
 
 function Panel() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState(undefined);
   const [page, setPage] = useState(1);
   const [date, setDate] = useState({ from: '2021-03-01', to: '2022-03-25'})
-  const fromRef = useRef(null);
-  const toRef = useRef(null);
+  const fromRef = useRef('');
+  const toRef = useRef('');
   useEffect(() => {
+    console.log(date)
     const fetchData = async () => {
       const response = await fetch(`https://admindev.inceptia.ai/api/v1/inbound-case/?client=28&local_updated_date_gte=${date.from}&local_updated_date_lte=${date.to}${ page !== 0 ?'&page=' + page : ''}`, {
         headers: {
@@ -22,13 +23,12 @@ function Panel() {
     fetchData();
   },[page, date])
   
-  const handlePickDate = () => {
-    setDate({
-      from: fromRef.current.value,
-      to: toRef.current.value
-    })
-  }
-  console.log(date)
+  // const handlePickDate = () => {
+  //   setDate({
+  //     from: fromRef.current.value,
+  //     to: toRef.current.value
+  //   })
+  // }
 
 
   return (
@@ -53,7 +53,7 @@ function Panel() {
                   ref={toRef}
                   placeholder="yyyy-mm-dd"/>
               </div>
-              <Button onClick={handlePickDate} className='h-10 drop-shadow-none bg-slate-400' variant="contained">Buscar</Button>
+              <Button onClick={() => setDate({from: fromRef.current.value, to: toRef.current.value})} className='h-10 drop-shadow-none bg-slate-400' variant="contained">Buscar</Button>
             </form>
           </div>
         </div>
