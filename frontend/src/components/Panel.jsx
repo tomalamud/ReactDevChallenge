@@ -42,7 +42,7 @@ function Panel() {
   return (
     <>
       <div className='bg-gray-200 w-full h-auto'>
-        <PanelHeader/>
+        <PanelHeader data={data}/>
         <div className='h-20 w-full flex justify-between bg-white px-4 items-center'>Detalle 
           <div>
             {/* Date-Filter Component */}
