@@ -6,7 +6,8 @@ import ColumnGroupingTable from './Table';
 function Panel() {
   const [data, setData] = useState(undefined);
   const [page, setPage] = useState(1);
-  const [date, setDate] = useState({ from: '2021-03-01', to: '2022-03-25'})
+  const [date, setDate] = useState({ from: '2021-03-01', to: '2022-03-25'});
+  const [validDate, setValidDate] = useState(true);
   const fromRef = useRef('');
   const toRef = useRef('');
   useEffect(() => {
@@ -18,18 +19,25 @@ function Panel() {
         }
       })
       const newData = await response.json();
+      console.log(newData)
       setData(newData);
     }
     fetchData();
   },[page, date])
   
-  // const handlePickDate = () => {
-  //   setDate({
-  //     from: fromRef.current.value,
-  //     to: toRef.current.value
-  //   })
-  // }
-
+  const dateValidation = () => {
+    const regex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+    const valid = (regex.test(fromRef.current.value) && regex.test(toRef.current.value))
+    setValidDate(valid);
+    if (validDate) {
+      setDate({
+        from: fromRef.current.value,
+        to: toRef.current.value
+      })
+    } else {
+      console.log(validDate)
+    }
+  }
 
   return (
     <>
@@ -40,20 +48,24 @@ function Panel() {
             {/* Date-Filter Component */}
             <form className='flex space-x-2 items-end'>
               <div>
-                <label>Buscar desde</label>
+              {validDate ? <label>Buscar desde</label> : (
+                  <label className='text-red-700'>YYYY-MM-DD</label>
+                )}
                 <input type="text"
                   class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   ref={fromRef}
                   placeholder="yyyy-mm-dd"/>
               </div>
               <div>
-                <label>Buscar hasta</label>
+                {validDate ? <label>Buscar hasta</label> : (
+                  <label className='text-red-700'>YYYY-MM-DD</label>
+                )}
                 <input type="text"
                   class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   ref={toRef}
                   placeholder="yyyy-mm-dd"/>
               </div>
-              <Button onClick={() => setDate({from: fromRef.current.value, to: toRef.current.value})} className='h-10 drop-shadow-none bg-slate-400' variant="contained">Buscar</Button>
+              <Button onClick={dateValidation} className='h-10 drop-shadow-none bg-slate-400' variant="contained">Buscar</Button>
             </form>
           </div>
         </div>
