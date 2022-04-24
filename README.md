@@ -23,4 +23,4 @@ And I also have used Material UI and Tailwindcss for the same purpose.
 3) Then I migrate this layout to the given docker environment and could be able to add grater detail and usability
 to each part of the build.
 4) After finishing the main layout (dashboard), I started implementing redux for authentication in the `redux-auth` branch.
-5) I end up the process by implementing the final docker details for carrying the project to production.
+5) I end up the process by implementing the final docker details for carrying the project to production and merging the `redux-auth` branch to main.
