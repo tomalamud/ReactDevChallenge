@@ -5,21 +5,22 @@ export const getCredentials = () => ({
   type: GET_CREDENTIALS
 });
 
-export const setCredentials = () => ({
-  type: SET_CREDENTIALS
+export const setCredentials = (email, password) => ({
+  type: SET_CREDENTIALS,
+  email,
+  password,
 });
 
 const initialState = {
-  email: undefined
+  email: 'pepito@gmail.com',
+  password: 'pepito',
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_CREDENTIALS:
-      const { userCredentials } = action;
-      return { ...state, userCredentials };
-    case GET_CREDENTIALS:
-      return state;
+      let { email, password } = action;
+      return { ...state, ...email, ...password };
     default:
       return state;
   }

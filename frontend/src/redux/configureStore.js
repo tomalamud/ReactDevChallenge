@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
 import userReducer from "./ducks/userToken";
+import credentialsReducer from "./ducks/credentials";
 import { watcherSaga } from "./sagas/rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -11,7 +12,8 @@ const middleware = [
 
 const store = configureStore({
   reducer: {
-    user: userReducer
+    user: userReducer,
+    credentials: credentialsReducer,
   }, 
   middleware,
 });
