@@ -1,14 +1,32 @@
 import React from 'react';
 import MainView from './components/MainView';
 import Login from './components/Login';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 function App() {
+  const authToken = useSelector(state => state.user.userToken);
   return (
     <>
       <Routes>
-        <Route path="/" element={<MainView/>}/>
-        <Route path="login" element={<Login/>}/>
+        <Route 
+          path="/" 
+          element={
+            authToken !== undefined ? (
+              <MainView/>
+            ) : (
+              <Navigate replace to="login"/>
+            )
+          }/>
+        <Route 
+          path="login" 
+          element={
+            authToken === undefined ? (
+              <Login/>
+            ) : (
+              <Navigate replace to="/"/>
+            )
+          }/>
       </Routes>
     </>
   );

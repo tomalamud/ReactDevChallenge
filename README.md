@@ -1,38 +1,26 @@
-#ReactJS Challenge
-
 ## General Info ##
-This project uses the following technologies:
-
-  *  Docker & docker-compose
-  *  React.js
+This repository was realized in less than three days, in the context of a #ReactJS-Challenge.
 
 ## Docker & make instructions ##
 To deploy locally or remotely you'll need [docker-compose](https://docs.docker.com/compose/install/) and [docker-engine](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
-You can just copy and paste the following commands:
 
-```bash
-sudo apt-get install apt-transport-https ca-certificates
-wget -qO- https://get.docker.com/ | sh
-sudo usermod -aG docker $USER
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-sudo gpasswd -a ${USER} docker
-sudo service docker restart
-newgrp docker
-```
+Once set up you can run `make [tab]` to see a list of actions:
 
-Once set up you can run `make [tab][tab]` to see a list of actions:
-
-  *  `make build` to initially build the containers
-  *  `make up` to deploy the containers
-  *  `make stop` to turn off containers
-  *  `make clean` to remove the containers
-  *  `make shell-'container'` to drop into that container's shell
-  *  `make log-'container'` to get a full log of the container
+  *  `make build` to initially build and deploy the container
+  *  `make start` to start the containers app
+  *  `make stop` to turn off the app
   
 Normally you'll only run `make build` only once in a while, `make up` every time you start your env.
+But this example is a finall product ready for production so the `up` and the `build`is the same.
 
-## Guidelines for this Challenge
-
-  * Feel free to use the directory structure you find more convenient to solve this challenge, as well as install, through npm, 3rd party libraries that could aid you to fulfill the assignment.
-  * The additional challenges of building a redux architechture and using routes inside the app are completely optional.
+## Developement prcess ##
+1) I first began this process by studying the given endpoints with [Insomnia](http://insomnia.rest) untill 
+I realized the general idea and what I had to do with the UI in order to make it interact with them.
+2) After this little research, I began depeloping with a `create-react-app` due to its simplicity 
+and my previous experience with the tool. All the work done there can be found in [this](https://github.com/tomaselizondo/ReactDevChallenge-utils) repo.
+This strategy have helped me to speed up the general layout developement. 
+And I also have used Material UI and Tailwindcss for the same purpose.
+3) Then I migrate this layout to the given docker environment and could be able to add grater detail and usability
+to each part of the build.
+4) After finishing the main layout (dashboard), I started implementing redux for authentication in the `redux-auth` branch.
+5) I end up the process by implementing the final docker details for carrying the project to production and merging the `redux-auth` branch to main.

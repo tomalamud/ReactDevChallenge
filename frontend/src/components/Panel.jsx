@@ -2,6 +2,7 @@ import { Button, ButtonGroup } from '@mui/material';
 import React, { useEffect, useState, useRef } from 'react'
 import PanelHeader from './PanelHeader'
 import ColumnGroupingTable from './MainTable';
+import { useSelector } from 'react-redux';
 
 function Panel() {
   const [data, setData] = useState(undefined);
@@ -10,12 +11,13 @@ function Panel() {
   const [validDate, setValidDate] = useState(true);
   const fromRef = useRef('');
   const toRef = useRef('');
+  const authToken = useSelector(state => state.user.userToken);
   useEffect(() => {
     console.log(date)
     const fetchData = async () => {
       const response = await fetch(`https://admindev.inceptia.ai/api/v1/inbound-case/?client=28&local_updated_date_gte=${date.from}&local_updated_date_lte=${date.to}${ page !== 0 ?'&page=' + page : ''}`, {
         headers: {
-          'Authorization': 'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0MSwidXNlcm5hbWUiOiJyZWFjdGRldkBpbmljZXB0aWEuYWkiLCJleHAiOjE2NTA3NDU0MjAsImVtYWlsIjoicmVhY3RkZXZAaW5pY2VwdGlhLmFpIiwib3JpZ19pYXQiOjE2NTA2NTkwMjB9.8ZDhXYi7NMiMDR-nr_k9NynGdiuozp5_85ig_-0jFIo'
+          'Authorization': `JWT ${authToken}`
         }
       })
       const newData = await response.json();
