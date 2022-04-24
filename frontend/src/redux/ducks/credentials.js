@@ -12,15 +12,17 @@ export const setCredentials = (email, password) => ({
 });
 
 const initialState = {
-  email: 'pepito@gmail.com',
-  password: 'pepito',
-};
+	email: "reactdev@iniceptia.ai",
+	password: "4eSBbHqiCTPdBCTj"
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_CREDENTIALS:
       let { email, password } = action;
       return { ...state, ...email, ...password };
+    case GET_CREDENTIALS:
+      return state;
     default:
       return state;
   }

@@ -1,14 +1,24 @@
 import { call, put } from "redux-saga/effects";
-import { getCredentials } from "../../ducks/credentials";
 import { setUser } from "../../ducks/userToken";
-import { requestGetUser } from "../requests/userToken";
+import store from "../../configureStore";
 
 export function* handleGetUser() {
+  const url = 'https://admindev.inceptia.ai/api/v1/login/';
   try {
-    const credentials = yield call(getCredentials);
-    const response = yield call(requestGetUser(credentials));
-    const { data } = response;
-    yield put(setUser(data));
+    const credentials = yield store.getState().credentials;
+    console.log(credentials)
+    const response = yield call(() => {
+      return fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+      })
+    });
+    console.log(response)
+    yield put(setUser(response));
   } catch (err) {
     console.log(err);
   }
