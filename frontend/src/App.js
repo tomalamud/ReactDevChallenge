@@ -12,7 +12,7 @@ function App() {
         <Route 
           path="/" 
           element={
-            authToken ? (
+            authToken !== undefined ? (
               <MainView/>
             ) : (
               <Navigate replace to="login"/>
@@ -21,7 +21,7 @@ function App() {
         <Route 
           path="login" 
           element={
-            !authToken ? (
+            authToken === undefined ? (
               <Login/>
             ) : (
               <Navigate replace to="/"/>

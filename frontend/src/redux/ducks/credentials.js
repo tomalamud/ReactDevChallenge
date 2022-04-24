@@ -12,8 +12,8 @@ export const setCredentials = (email, password) => ({
 });
 
 const initialState = {
-	email: "reactdev@iniceptia.ai",
-	password: "4eSBbHqiCTPdBCTj"
+	email: "",
+	password: ""
 }
 
 export default (state = initialState, action) => {

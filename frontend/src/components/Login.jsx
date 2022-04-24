@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { setCredentials } from '../redux/ducks/credentials';
 import { LockClosedIcon } from '@heroicons/react/solid';
 import { getUser } from '../redux/ducks/userToken';
@@ -9,12 +9,6 @@ export default function LoginPage() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const dispatch = useDispatch();
-  // const credentialsSelector = useSelector(state => state.credentials);
-  // const userSelector = useSelector(state => state.user.userToken);
-
-  // useEffect(() => {
-  //   console.log(userSelector)
-  // }, [userSelector])
 
   const submitHandler = (event) => {
     event.preventDefault(); // evita que el comportamiento default del form (enviar a una url)
