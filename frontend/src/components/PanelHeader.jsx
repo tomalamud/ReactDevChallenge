@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react'
+import { useSelector } from 'react-redux';
 
 function PanelHeader() {
   const [toggleUserInfo, setToggleUserInfo] = useState(false);
   const [data, setData] = useState(undefined);
+  const authToken = useSelector(state => state.user.userToken);
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`https://admindev.inceptia.ai/api/v1/clients/`, {
         headers: {
-          'Authorization': 'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0MSwidXNlcm5hbWUiOiJyZWFjdGRldkBpbmljZXB0aWEuYWkiLCJleHAiOjE2NTA4MzIwOTksImVtYWlsIjoicmVhY3RkZXZAaW5pY2VwdGlhLmFpIiwib3JpZ19pYXQiOjE2NTA3NDU2OTl9.Hcv_zy2ChUVyaUug14foiG1DHTyTRx0PH5zZoPRdQpw'
+          'Authorization': `JWT ${authToken}`
         }
       })
       const newData = await response.json();

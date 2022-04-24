@@ -11,7 +11,7 @@ export default function LoginPage() {
   const dispatch = useDispatch();
 
   const submitHandler = (event) => {
-    event.preventDefault(); // evita que el comportamiento default del form (enviar a una url)
+    event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     dispatch(setCredentials({

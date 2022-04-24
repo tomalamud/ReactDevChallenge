@@ -1,30 +1,42 @@
 NODE=`docker-compose ps | grep npm | cut -d\  -f 1 | head -n 1`
-FILE=docker-compose.yml
+# FILE=docker-compose.yml
+FILE_PROD=docker-compose.prod.yml
 ENV_STAGE = ``
 
-#########
-#ACTIONS#
-#########
+#############
+#PROD ACTIONS#
+#############
 
 build:
-	docker-compose -f $(FILE) build
-
-up:
-	docker-compose -f $(FILE) up -d
+	docker-compose -f $(FILE_PROD) up -d --build
 
 start:
-	docker-compose -f $(FILE) start
+	docker-compose -f $(FILE_PROD) start
 
 stop:
-	docker-compose -f $(FILE) stop
+	docker-compose -f $(FILE_PROD) stop
 
+#############
+#DEV ACTIONS#
+#############
 
-clean: stop
-	docker-compose rm -f
+# build:
+# 	docker-compose -f $(FILE) build
 
-restart: clean build up
-	@echo "Restarted all containers"
+# up:
+# 	docker-compose -f $(FILE) up -d
 
+# start:
+# 	docker-compose -f $(FILE) start
+
+# stop:
+# 	docker-compose -f $(FILE) stop
+
+# clean: stop
+# 	docker-compose rm -f
+
+# restart: clean build up
+# 	@echo "Restarted all containers"
 
 ########
 #SHELLS#
@@ -37,8 +49,6 @@ shell-app:
 ######
 #LOGS#
 ######
-
-
 
 log-app:
 	docker-compose logs app

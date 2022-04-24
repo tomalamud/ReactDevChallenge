@@ -75,7 +75,6 @@ export default function ColumnGroupingTable({ data }) {
             {rows
               .map((row) => {
                 return (
-                  // href={`/call/${row.id}`}
                   <TableRow hover tabIndex={-1} className='cursor-pointer' key={row.id}>
                     {columns.map((column) => {
                       const value = row[column.id];
