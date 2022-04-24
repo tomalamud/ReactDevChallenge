@@ -15,10 +15,10 @@ export function* handleGetUser() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(credentials)
-      })
+      }).then(res => res.json())
     });
     console.log(response)
-    yield put(setUser(response));
+    yield put(setUser(response.token));
   } catch (err) {
     console.log(err);
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import MainView from './components/MainView';
 import Login from './components/Login';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -9,12 +9,24 @@ function App() {
   return (
     <>
       <Routes>
-        {authToken && (
-          <Route path="/" element={<MainView/>}/>
-        )}
-        {!authToken && (
-          <Route path="login" element={<Login/>}/>
-        )}
+        <Route 
+          path="/" 
+          element={
+            authToken ? (
+              <MainView/>
+            ) : (
+              <Navigate replace to="login"/>
+            )
+          }/>
+        <Route 
+          path="login" 
+          element={
+            !authToken ? (
+              <Login/>
+            ) : (
+              <Navigate replace to="/"/>
+            )
+          }/>
       </Routes>
     </>
   );

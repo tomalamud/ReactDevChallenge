@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_TOKEN:
       const { userToken } = action;
-      return { ...state, ...userToken };
+      return { ...state, userToken };
     default:
       return state;
   }
