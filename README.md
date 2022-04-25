@@ -13,7 +13,7 @@ Once set up you can run `make [tab]` to see a list of actions:
 Normally you'll only run `make build` only once in a while, `make up` every time you start your env.
 But this example is a finall product ready for production so the `up` and the `build`is the same.
 
-## Developement prcess ##
+## Developement porcess ##
 1) I first began this process by studying the given endpoints with [Insomnia](http://insomnia.rest) untill 
 I realized the general idea and what I had to do with the UI in order to make it interact with them.
 2) After this little research, I began depeloping with a `create-react-app` due to its simplicity 
