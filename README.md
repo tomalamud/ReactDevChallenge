@@ -11,7 +11,7 @@ Once set up you can run `make [tab]` to see a list of actions:
   *  `make stop` to turn off the app
   
 Normally you'll only run `make build` only once in a while, `make up` every time you start your env.
-But this example is a finall product ready for production so the `up` and the `build`is the same.
+But this in an example of a finnal product ready for production so the `up` and the `build` is made at the same time.
 
 ## Developement process ##
 1) I first began this process by studying the given endpoints with [Insomnia](http://insomnia.rest) untill 
