@@ -1,8 +1,8 @@
 # ¿Cómo implementarías las acciones del frontend utilizando redux?
 ### Utilicé redux para:
-1) Mantener una única fuente de veracidad (One Source Of Truth) en cuando a los JWT necesarios
-para autenticar a los usuarios y llamar a las APIs a los que estos tiene acceso. 
-Generando que todos los llamados a APIs se realicen con el JWT del login de la sesion y evitando que expiren.
+1) Mantener una única fuente de veracidad (One Source Of Truth) en cuanto a los JWT necesarios
+para autenticar a los usuarios y llamar a las APIs a los que estos tienen acceso. 
+Generando que todos los llamados a APIs se realicen con el JWT del login de la sesion y evitando que expiren en medio de una API call.
 2) Guardar dicho token en el store para que a la hora del login se realice un renderizado ternario que sólo
 te dé acceso al dashboard con los datos del cliente si la app reconoce que dentro del store hay un JWT.
 ### Lo utilizaría para:
